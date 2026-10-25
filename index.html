@@ -1,0 +1,676 @@
+<!doctype html>
+<html lang="en" data-theme="flippy-purple">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FlippyAI — a self-contained AI agent GUI with a real interface</title>
+    <meta
+      name="description"
+      content="FlippyAI is an open-source desktop agent GUI for macOS and Windows. Chat with an agent that edits your code with native tools plus real terminal access, against any OpenAI-compatible model."
+    />
+    <meta name="theme-color" content="#0f0d14" />
+    <link rel="icon" href="assets/flippyai-mark.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="nav" id="top">
+      <div class="wrap nav-inner">
+        <a class="brand" href="#top" aria-label="FlippyAI home">
+          <img src="assets/flippyai-mark.png" alt="" width="36" height="37" class="brand-mark" />
+          <span class="brand-name">FlippyAI</span>
+        </a>
+
+        <nav class="nav-links" aria-label="Sections">
+          <a href="#features">Overview</a>
+          <a href="#tools">Tools</a>
+          <a href="#overhead">Overhead</a>
+          <a href="#control">Controls</a>
+          <a href="#themes">Themes</a>
+          <a href="#specs">Specs</a>
+        </nav>
+
+        <div class="nav-theme" title="Preview the site in any of the app's 11 themes">
+          <span class="nav-theme-label">Theme</span>
+          <button
+            id="theme-next"
+            class="icon-btn"
+            aria-label="Cycle preview theme"
+            title="Cycle through the 11 themes"
+          >
+            &#9680;
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero">
+        <div class="hero-glow" aria-hidden="true"></div>
+        <div class="wrap hero-inner">
+          <div class="hero-copy">
+            <p class="eyebrow">Open source &middot; Apache-2.0 &middot; macOS + Windows</p>
+            <h1>
+              An agent GUI with a
+              <span class="grad">real interface</span>
+            </h1>
+            <p class="lede">
+              FlippyAI is a self-contained desktop app. Chat with an agent that reads your project,
+              edits your code with native tools, and runs real shell commands &mdash; then shows you
+              every change, so you can undo any one of them.
+            </p>
+            <p class="lede sub">
+              Bring any OpenAI-compatible model: a hosted API, or one running locally on your own
+              machine. No account, no lock-in.
+            </p>
+
+            <div class="cta-row">
+              <a
+                id="btn-download"
+                class="btn btn-primary btn-xl"
+                href="https://github.com/bananatoaster47e/FlippyAI/releases"
+                target="_blank"
+                rel="noopener"
+              >
+                <span class="btn-icon" aria-hidden="true">&#11015;</span>
+                <span class="btn-label">Download FlippyAI</span>
+              </a>
+              <a class="btn btn-ghost btn-xl" href="#features">See how it works</a>
+            </div>
+            <p class="cta-note">
+              Free and open source. Runs entirely on your computer &mdash; nothing is hosted.
+            </p>
+          </div>
+
+          <figure class="hero-shot">
+            <div class="mock" role="img" aria-label="Preview of the FlippyAI interface">
+
+              <div class="m-side">
+                <div class="m-brand">
+                  <svg class="m-fan" viewBox="0 0 24 24" aria-hidden="true">
+                    <rect class="m-tile" x="1.5" y="1.5" width="21" height="21" rx="6"/>
+                    <g transform="translate(12 12)">
+                      <path class="m-blade" d="M0 -8.2 C1.7 -6.9 2.2 -4.3 1.8 -2.7 C1.4 -0.9 0.5 -0.3 0 0 C-0.5 -0.3 -1.4 -0.9 -1.8 -2.7 C-2.2 -4.3 -1.7 -6.9 0 -8.2 Z"/>
+                      <path class="m-blade" transform="rotate(120)" d="M0 -8.2 C1.7 -6.9 2.2 -4.3 1.8 -2.7 C1.4 -0.9 0.5 -0.3 0 0 C-0.5 -0.3 -1.4 -0.9 -1.8 -2.7 C-2.2 -4.3 -1.7 -6.9 0 -8.2 Z"/>
+                      <path class="m-blade" transform="rotate(240)" d="M0 -8.2 C1.7 -6.9 2.2 -4.3 1.8 -2.7 C1.4 -0.9 0.5 -0.3 0 0 C-0.5 -0.3 -1.4 -0.9 -1.8 -2.7 C-2.2 -4.3 -1.7 -6.9 0 -8.2 Z"/>
+                    </g>
+                    <circle class="m-hub" cx="12" cy="12" r="2.2"/>
+                  </svg>
+                  <b>FlippyAI</b>
+                </div>
+                <div class="m-new">&#65291; New Task</div>
+                <div class="m-newfolder">&#128450; New folder</div>
+                <div class="m-chats">
+                  <div class="m-fgroup">
+                    <div class="m-fhead">
+                      <span class="m-fcaret">&#9660;</span>
+                      <span class="m-ficon">&#128640;</span>
+                      <span class="m-fname">FlippyAI</span>
+                      <span class="m-fcount">2</span>
+                      <span class="m-facts"><span class="act">&#65291;</span><span class="act">&#9998;</span><span class="act del">&#10005;</span></span>
+                    </div>
+                    <div class="m-fbody">
+                      <div class="m-chat active"><span class="t">Refactor provider layer</span><span class="time">2h</span><span class="m-acts"><span class="act">&#128193;</span><span class="act">&#9998;</span><span class="act del">&#10005;</span></span></div>
+                      <div class="m-chat"><span class="t">Fix flaky test suite</span><span class="time">5m</span></div>
+                    </div>
+                  </div>
+                  <div class="m-fhead unfiled">
+                    <span class="m-fcaret">&middot;</span>
+                    <span class="m-ficon">&#10022;</span>
+                    <span class="m-fname">Unfiled</span>
+                  </div>
+                  <div class="m-chat"><span class="t">Explain the undo system</span><span class="time">1d</span></div>
+                  <div class="m-chat"><span class="t">Rename cfg to settings</span><span class="time">now</span></div>
+                </div>
+              </div>
+
+              <div class="m-main">
+                <div class="m-topbar">
+                  <span class="m-spacer"></span>
+                  <span class="m-changes">Changes: <b>3</b></span>
+                  <span class="m-status"><i class="m-dot working"></i>working</span>
+                </div>
+
+                <div class="m-toolbar">
+                  <span class="m-field"><em>Brain</em>Medium</span>
+                  <span class="m-field"><em>Mode</em>&#9889; Act</span>
+                  <span class="m-spacer"></span>
+                  <span class="m-gear">&#9881; Settings</span>
+                </div>
+
+                <div class="m-ctx">
+                  <span class="m-ctx-text">&#8776; 21.4k / 131.1k &middot; 16%</span>
+                  <span class="m-track"><i class="m-fill ok"></i></span>
+                  <span class="m-mini">compact</span>
+                </div>
+
+                <div class="m-chatarea">
+                  <div class="m-msg user">rename cfg to settings across the repo, keep it typed</div>
+
+                  <div class="m-tool">
+                    <div class="m-tool-head ok"><span class="i">&#10003;</span><span class="n">explore</span><span class="s">done</span></div>
+                    <div class="m-tool-body"><pre>12 matches in 4 files &mdash; every `cfg` identifier</pre></div>
+                  </div>
+
+                  <div class="m-tool">
+                    <div class="m-tool-head ok"><span class="i">&#10003;</span><span class="n">edit</span><span class="s">done</span></div>
+                    <div class="m-tool-body"><pre class="m-diff"><span class="dl del">-  const cfg = loadConfig();</span><span class="dl add">+  const settings = loadConfig();</span></pre></div>
+                  </div>
+
+                  <div class="m-tool">
+                    <div class="m-tool-head run"><span class="i">&#9654;</span><span class="n">terminal</span><span class="s">running&#8230;</span></div>
+                    <div class="m-approval pending">
+                      <span class="ap">Approve running <b>terminal</b>?</span>
+                      <span class="a-no">Deny</span><span class="a-ok">Approve</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="m-modelbar">
+                  <span class="m-pill">model: model</span>
+                  <span class="m-pill">provider: provider</span>
+                  <span class="m-pill off">sampling: off</span>
+                  <span class="m-pill on">gen: locked</span>
+                  <span class="m-pill">context: 128K</span>
+                </div>
+
+                <div class="m-composer">
+                  <span class="m-input">Ask Flippy to build, edit, or explore your project&#8230;</span>
+                  <span class="m-attach" title="Add files">+</span>
+                  <span class="m-send" title="Send (Enter)">&#8593;</span>
+                </div>
+              </div>
+            </div>
+            <figcaption class="shot-note">
+              The real layout &mdash; sidebar with collapsible chat folders, Brain/Mode toolbar,
+              context bar, tool cards with the approval bar, model pills and composer. The row
+              actions (<b>&#128193;</b> move &middot; <b>&#9998;</b> rename &middot; <b>&#10005;</b> delete)
+              appear on hover in the app; they are shown open here.
+            </figcaption>
+          </figure>
+        </div>
+
+        <div class="wrap stats">
+          <div class="stat"><b>10</b><span>native tools</span></div>
+          <div class="stat"><b>11</b><span>color themes</span></div>
+          <div class="stat"><b>3,451</b><span>tokens of overhead</span></div>
+          <div class="stat"><b>0</b><span>cloud services required</span></div>
+        </div>
+      </section>
+
+      <!-- ===================== OVERVIEW ===================== -->
+      <section id="features" class="section">
+        <div class="wrap">
+          <p class="kicker">Overview</p>
+          <h2>Four things it refuses to fake</h2>
+          <div class="grid grid-4">
+            <article class="card">
+              <div class="card-ico">&#9881;</div>
+              <h3>Real tools, not suggestions</h3>
+              <p>
+                The agent doesn't hand you diffs to paste. It calls <code>explore</code>,
+                <code>write</code> and <code>edit</code> against your filesystem, and runs actual
+                shell commands through <code>terminal</code>. Every call is a schema'd function call
+                &mdash; the same contract serious agents use.
+              </p>
+            </article>
+            <article class="card">
+              <div class="card-ico">&#129504;</div>
+              <h3>Bring your own model</h3>
+              <p>
+                Any OpenAI-compatible endpoint. Models are fetched automatically from
+                <code>/v1/models</code> the moment you enter a base URL and key &mdash; then pick one
+                or type your own id. Local llama.cpp, Ollama, vLLM or a hosted API all behave the
+                same.
+              </p>
+            </article>
+            <article class="card">
+              <div class="card-ico">&#128274;</div>
+              <h3>Nothing leaves unless you send it</h3>
+              <p>
+                Provider config and chat history are stored locally on your machine. No FlippyAI
+                account, no telemetry service, no hosted database. Your API key only ever goes to the
+                endpoint you typed in.
+              </p>
+            </article>
+            <article class="card">
+              <div class="card-ico">&#128260;</div>
+              <h3>Every change is reversible</h3>
+              <p>
+                A <strong>Changes</strong> panel collects every write and edit with
+                <code>+added / &minus;removed</code> totals, and the undo layer can roll back a single
+                tool call &mdash; including files changed by a shell command.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== TOOLS ===================== -->
+      <section id="tools" class="section alt">
+        <div class="wrap">
+          <p class="kicker">Capabilities</p>
+          <h2>Ten native tools</h2>
+          <p class="section-lede">
+            Each one is a real function with a JSON schema and an executor &mdash; not a suggestion in
+            a prompt. Ten exist, and eight ship in every request by default (web fetch and
+            accessibility are off), which costs about 2,900 tokens of schemas and prompt text
+            to describe &mdash; so the model knows exactly when to reach for
+            each one.
+          </p>
+
+          <div class="grid grid-3">
+            <article class="tool">
+              <h3><code>explore</code></h3>
+              <p>List directories, glob for files by pattern, grep contents, and read files with line
+                numbers in chunks. The <code>offset</code>/<code>limit</code> pair keeps a huge file
+                from flooding your context.</p>
+            </article>
+            <article class="tool">
+              <h3><code>write</code></h3>
+              <p>Create a file or replace one completely, with parent folders made automatically. It
+                demands the full new content, so a partial write can't quietly truncate a file.</p>
+            </article>
+            <article class="tool">
+              <h3><code>edit</code></h3>
+              <p>Surgical find-and-replace. If <code>oldString</code> matches more than once the edit
+                is <em>refused</em> unless you ask for <code>replaceAll</code> &mdash; ambiguity fails
+                loudly instead of guessing.</p>
+            </article>
+            <article class="tool">
+              <h3><code>terminal</code></h3>
+              <p>Genuine shell execution, with the working directory's state captured beforehand so a
+                command that wrote files can still be reverted. Turn the toggle off to forbid all
+                shell access.</p>
+            </article>
+            <article class="tool">
+              <h3><code>browser</code></h3>
+              <p>Opens a URL in a real Chromium page where JavaScript actually runs, unlike a plain
+                fetch &mdash; and it isn't blocked by bot walls the way <code>web_fetch</code> can be.
+                The more advanced, heavier way to look at the web: navigate, read visible text, dump
+                the DOM, inspect computed CSS, grab console errors, take screenshots &mdash; and reach
+                your own <code>localhost</code> dev server. It has its own switch, independent of
+                Advanced features.</p>
+            </article>
+            <article class="tool">
+              <h3><code>git</code><span class="badge adv">advanced</span></h3>
+              <p>Read-only inspection of a local repository: status, log, show, diff, blame, branches,
+                remotes. It never commits or checks out &mdash; write operations go through
+                <code>terminal</code>, where you can see and approve them.</p>
+            </article>
+            <article class="tool">
+              <h3><code>github</code><span class="badge adv">advanced</span></h3>
+              <p>Read-only REST access for remote data a local clone lacks: open PRs, issues, commits,
+                a file at a ref, or a repo-wide search. Uses your token, and says so plainly when none
+                is set.</p>
+            </article>
+            <article class="tool">
+              <h3><code>accessibility</code><span class="badge adv">advanced</span></h3>
+              <p>Reads the desktop through the OS accessibility tree, and can click or type in other
+                apps &mdash; but those actions stay behind the Auto-approve gate, and it needs the
+                macOS Accessibility permission. Experimental and <b>off by default</b>: turn both it
+                and Advanced features on to use it.</p>
+            </article>
+            <article class="tool">
+              <h3><code>web_fetch</code></h3>
+              <p>Reads public pages as text. Off by default because page text lands straight in your
+                context, which is expensive &mdash; and it detects bot walls instead of pretending to
+                beat them.</p>
+            </article>
+            <article class="tool">
+              <h3><code>task</code><span class="badge adv">advanced</span></h3>
+              <p>Delegates one question to a fresh sub-agent running in its <em>own</em> context with
+                its own read-only tools. It can investigate across several steps and return the
+                answer, not its raw working &mdash; so research doesn't eat your conversation.</p>
+            </article>
+            <article class="tool accent">
+              <h3>&#8710; Token discipline</h3>
+              <p>Full agent overhead is <b>3,451 tokens</b> &mdash; 1,713 of system prompt plus 1,738
+                of tool schemas. Switching <b>Advanced features</b> off drops it to <b>2,449</b>, about
+                29% less, and the <em>lean</em> profile reaches <b>1,670</b> &mdash; because disabled
+                features also shed their prompt text.</p>
+            </article>
+            <article class="tool accent">
+              <h3>&#9889; Two modes, one keystroke</h3>
+              <p><b>&#9889; Act</b> gives full editing power. <b>&#129517; Plan</b> is read-only
+                research: the agent investigates, then presents a plan without touching a single
+                file. Switch back to Act and build it.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ===================== OVERHEAD / COMPARISON ===================== -->
+      <section id="overhead" class="section">
+        <div class="wrap">
+          <p class="kicker">The context tax</p>
+          <h2>What it costs just to show up</h2>
+          <p class="section-lede">
+            Every agent spends tokens describing itself before it spends one on you &mdash; the system
+            prompt plus the JSON schema of every tool. That bill is paid on <em>every</em> request.
+            Here is ours next to what a typical agent carries, measured with the app's own estimator.
+          </p>
+
+          <div class="bars" role="img" aria-label="Comparison of per-request prompt overhead: typical
+            GUI coding agent about 10,000 tokens; FlippyAI with default features 3,451; average CLI or IDE
+            agent about 3,100; FlippyAI with advanced features off 2,449.">
+            <div class="bar-row rival" style="--w: 100%">
+              <span class="bar-name">Typical GUI coding agent</span>
+              <span class="bar-track"><span class="bar-fill"></span></span>
+              <span class="bar-val">~10,000</span>
+            </div>
+            <div class="bar-row ours" style="--w: 34.5%">
+              <span class="bar-name">FlippyAI &mdash; default features</span>
+              <span class="bar-track"><span class="bar-fill"></span></span>
+              <span class="bar-val">3,451</span>
+            </div>
+            <div class="bar-row rival" style="--w: 31%">
+              <span class="bar-name">Average CLI / IDE agent</span>
+              <span class="bar-track"><span class="bar-fill"></span></span>
+              <span class="bar-val">~3,100</span>
+            </div>
+            <div class="bar-row ours lean" style="--w: 24.5%">
+              <span class="bar-name">FlippyAI &mdash; advanced off</span>
+              <span class="bar-track"><span class="bar-fill"></span></span>
+              <span class="bar-val">2,449</span>
+            </div>
+          </div>
+
+          <p class="bars-note">
+            The two <b>FlippyAI</b> bars are counted, not estimated: <b>3,451</b> is 1,713 tokens of
+            system prompt plus 1,738 describing eight tools, exactly as the shipped defaults assemble
+            them; <b>2,449</b> is the same agent with <b>Advanced features</b> switched off. The rival
+            figures are rough typical values for that class of product, not a measurement of any one
+            tool &mdash; and a GUI agent's number usually covers far more than a prompt, since
+            screenshots and accessibility trees re-send every turn.
+          </p>
+
+          <div class="grid grid-3 overhead-grid">
+            <article class="tool">
+              <h3>One switch, not a rewrite</h3>
+              <p>Turning off <b>Advanced features</b> sheds git, github, accessibility and
+                sub-agents &mdash; <em>and the prompt text that explains them</em>. (The browser has
+                its own toggle above them.) That is where the 29%
+                goes. Most products ask you to accept the whole apparatus or none of it.</p>
+            </article>
+            <article class="tool">
+              <h3>Read-only is cheaper still</h3>
+              <p>In <b>Plan</b> mode with advanced features off, describing the agent takes
+                <b>1,910</b> tokens. Research sessions, where the model only inspects, spend a fifth
+                of a typical GUI agent's standing overhead on every single turn.</p>
+            </article>
+            <article class="tool">
+              <h3>The rest is your conversation</h3>
+              <p>Overhead is a floor, not a ceiling &mdash; and it is the part you never get back.
+                FlippyAI watches 70% of the context window and compacts the older turns into a summary
+                automatically, so the growing cost is your history, not its résumé.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ===================== CONTROLS ===================== -->
+      <section id="control" class="section alt">
+        <div class="wrap">
+          <p class="kicker">Under your control</p>
+          <h2>Everything is a switch you can see</h2>
+          <p class="section-lede">
+            The interface is honest about what it sends. Every toggle below is a real control in
+            Settings, with its real default.
+          </p>
+
+          <div class="split">
+            <div class="split-col">
+              <h3 class="mini-h">Reasoning &amp; mode</h3>
+              <ul class="ticks">
+                <li><b>Brain</b> &mdash; Minimum, Low, Medium, High, Max, No mode, or Blank (sends no
+                  system prompt at all).</li>
+                <li><b>Mode</b> &mdash; &#9889; Act for full editing power, &#129517; Plan for read-only
+                  research that presents a plan and changes nothing.</li>
+                <li>Thinking level barely changes the prompt (roughly 53 tokens) &mdash; reasoning
+                  tokens are output, not context.</li>
+              </ul>
+
+              <h3 class="mini-h">Permissions</h3>
+              <ul class="ticks">
+                <li><b>Terminal tools</b> <span class="def">default on</span> &mdash; off forbids all
+                  shell access, and any terminal command is refused.</li>
+                <li><b>Advanced features</b> <span class="def">default on</span> &mdash; git,
+                  github, accessibility and sub-agents, plus their prompt text.</li>
+                <li><b>Sub-agents</b> <span class="def">default on</span> &mdash; nested, and only
+                  available while Advanced features is on.</li>
+                <li><b>Accessibility</b> <span class="def">default off</span> &mdash; experimental;
+                  nested under Advanced features.</li>
+                <li><b>Web fetch</b> <span class="def">default off</span> &mdash; because page text
+                  enters the context.</li>
+                <li><b>Auto-approve actions</b> &mdash; off means every terminal, edit and write asks
+                  first.</li>
+              </ul>
+            </div>
+
+            <div class="split-col">
+              <h3 class="mini-h">Context &amp; generation</h3>
+              <ul class="ticks">
+                <li><b>Set context &amp; max tokens</b> &mdash; enforce a 131,072 context window and
+                  16,384 max output tokens, or leave it off and let your provider decide.</li>
+                <li><b>Send sampling config</b> &mdash; temperature, top&#8202;p, frequency penalty and
+                  presence penalty, plus any extra param you add as a key/value pair (for example
+                  <code>repetition_penalty</code>). Only filled-in settings are sent.</li>
+                <li>The model bar exposes live state as pills: <code>model</code>,
+                  <code>provider</code>, <code>sampling</code>, <code>gen</code>,
+                  <code>context</code> &mdash; so you never guess what is being sent.</li>
+                <li>Context window is a local number only. It sizes the bar and the compaction
+                  threshold; it is never sent to the API.</li>
+              </ul>
+
+              <h3 class="mini-h">Context bar &amp; compaction</h3>
+              <ul class="ticks">
+                <li>Estimates conversation size locally (chars &divide; 4 across system prompt, tools
+                  and messages) with a live fill bar and warning colors.</li>
+                <li><b>Auto-compact</b> summarizes in the background past 70% of the window; the
+                  <code>compact</code> button does it on demand, with a confirm step.</li>
+                <li>A sub-agent bar shows how many background research turns are live. Collapsing one
+                  only hides the view &mdash; it never stops the work.</li>
+              </ul>
+
+              <h3 class="mini-h">Attachments</h3>
+              <ul class="ticks">
+                <li>PNG and JPEG up to 25&#8239;MB (large screenshots auto-resized), UTF-8 text up to
+                  200&#8239;KB, 3 files per message &mdash; the <b>+</b> button, drag-drop or paste.</li>
+                <li>That limit applies only to <em>sending into chat</em>. It never restricts what
+                  <code>explore</code>/<code>write</code>/<code>edit</code>/<code>terminal</code> can
+
+
+                  open or change.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== THEMES ===================== -->
+      <section id="themes" class="section">
+        <div class="wrap">
+          <p class="kicker">Appearance</p>
+          <h2>Eleven themes, built from tokens</h2>
+          <p class="section-lede">
+            Every theme is one block of CSS custom properties &mdash; surfaces, borders, text, accent,
+            glow and the semantic green/yellow/red/cyan. That's why switching is instant and why this
+            entire website repaints itself. <b>Click any swatch.</b>
+          </p>
+
+          <div class="theme-grid" id="theme-grid" role="group" aria-label="Preview theme">
+            <button class="sw" data-set="flippy-purple" aria-pressed="true"><span class="sw-b"></span><b>Flippy Purple</b><i>dark</i></button>
+            <button class="sw" data-set="neon" aria-pressed="false"><span class="sw-b"></span><b>Neon</b><i>dark</i></button>
+            <button class="sw" data-set="matrix" aria-pressed="false"><span class="sw-b"></span><b>Matrix</b><i>dark</i></button>
+            <button class="sw" data-set="ocean" aria-pressed="false"><span class="sw-b"></span><b>Ocean</b><i>dark</i></button>
+            <button class="sw" data-set="ember" aria-pressed="false"><span class="sw-b"></span><b>Ember</b><i>dark</i></button>
+            <button class="sw" data-set="graphite" aria-pressed="false"><span class="sw-b"></span><b>Graphite</b><i>dark</i></button>
+            <button class="sw" data-set="emerald" aria-pressed="false"><span class="sw-b"></span><b>Emerald</b><i>dark</i></button>
+            <button class="sw" data-set="rose" aria-pressed="false"><span class="sw-b"></span><b>Rose</b><i>dark</i></button>
+            <button class="sw" data-set="daybreak" aria-pressed="false"><span class="sw-b"></span><b>Daybreak</b><i>light</i></button>
+            <button class="sw" data-set="blush" aria-pressed="false"><span class="sw-b"></span><b>Blush</b><i>light</i></button>
+            <button class="sw" data-set="solar" aria-pressed="false"><span class="sw-b"></span><b>Solar</b><i>light</i></button>
+          </div>
+
+          <p class="hint">
+            8 dark and 3 light. The same token system drives the app, so a theme is a handful of lines,
+            not a rewrite &mdash; which is exactly how the picker inside Settings stays trivial.
+          </p>
+        </div>
+      </section>
+
+      <!-- ===================== SPECS ===================== -->
+      <section id="specs" class="section alt">
+        <div class="wrap">
+          <p class="kicker">Details</p>
+          <h2>Specifications</h2>
+          <div class="table-wrap">
+            <table class="spec">
+              <caption class="sr-only">FlippyAI specifications</caption>
+              <tbody>
+                <tr><th scope="row">Platforms</th><td>macOS <span class="dim">(.app)</span> &middot; Windows <span class="dim">(.exe)</span></td></tr>
+                <tr><th scope="row">Runtime</th><td>Electron &middot; Node 20+ &middot; single dependency</td></tr>
+                <tr><th scope="row">Providers</th><td>Any OpenAI-compatible API &mdash; models auto-fetched from <code>/v1/models</code></td></tr>
+                <tr><th scope="row">Native tools</th><td>10 &mdash; explore, write, edit, terminal, browser, git, github, accessibility, web_fetch, task</td></tr>
+                <tr><th scope="row">Default context</th><td>131,072 tokens <span class="dim">(local estimate + compaction threshold only)</span></td></tr>
+                <tr><th scope="row">Default max output</th><td>16,384 tokens <span class="dim">(sent as <code>max_tokens</code> when enforced)</span></td></tr>
+                <tr><th scope="row">Static prompt overhead</th><td>3,451 tokens full &middot; 2,449 with advanced features off &middot; 1,670 lean</td></tr>
+                <tr><th scope="row">Auto-compact</th><td>At 70% of the context window, summarized in the background</td></tr>
+                <tr><th scope="row">Attachments</th><td>3 per message &middot; PNG/JPEG to 25&#8239;MB &middot; UTF-8 text to 200&#8239;KB</td></tr>
+                <tr><th scope="row">Themes</th><td>11 &mdash; 8 dark, 3 light, persisted per install</td></tr>
+                <tr><th scope="row">Storage</th><td>Local only &mdash; provider config and chat history on your machine</td></tr>
+                <tr><th scope="row">License</th><td>Apache-2.0 &middot; open source</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ===================== GET IT ===================== -->
+      <section id="get" class="section">
+        <div class="wrap">
+          <p class="kicker">Get FlippyAI</p>
+          <h2>Install once, then point it at a model</h2>
+          <div class="grid grid-3 steps">
+            <article class="card step">
+              <span class="step-n">1</span>
+              <h3>Download &amp; open</h3>
+              <p>Grab the build for your platform. Because the app is unsigned, your OS will warn
+                first:</p>
+              <ul class="ticks tight">
+                <li><b>macOS</b> &mdash; click <em>Done</em>, then open System Settings &rarr; Privacy
+                  &amp; Security &rarr; find <b>FlippyAI</b> &rarr; <em>Open anyway</em>.</li>
+                <li><b>Windows</b> &mdash; click <em>More info</em>, then <em>Run anyway</em>.</li>
+              </ul>
+            </article>
+            <article class="card step">
+              <span class="step-n">2</span>
+              <h3>Connect a model</h3>
+              <p>Open &#9881; Settings and paste any OpenAI-compatible <b>Base URL</b> and
+                <b>API key</b> &mdash; a hosted endpoint, or a local one like
+                <code>http://127.0.0.1:8080/v1</code>. Models load automatically from
+                <code>/v1/models</code>. Pick one, or type your own id.</p>
+            </article>
+            <article class="card step">
+              <span class="step-n">3</span>
+              <h3>Choose your folder</h3>
+              <p>Pick the project you want the agent to work in. Set <b>Custom instructions</b> for
+                your project rules &mdash; "always use TypeScript strict mode", "keep functions
+                short" &mdash; and they'll be sent with every request.</p>
+            </article>
+          </div>
+
+          <div class="callout">
+            <b>Start in &#129517; Plan mode.</b> It lets the agent read, search and investigate, but
+            forbids every file change &mdash; so you get a vetted plan before anything is touched. Then
+            flip to &#9889; Act and let it build. Leave Auto-approve off at first and you'll confirm
+            each edit and command.
+          </div>
+        </div>
+      </section>
+
+
+      <!-- ===================== CTA ===================== -->
+      <section class="section final">
+        <div class="wrap final-inner">
+          <img src="assets/flippyai-mark.png" alt="FlippyAI logo" width="132" height="137" class="final-logo" />
+          <h2>Run a real agent on your own machine</h2>
+          <p class="section-lede center">
+            Ten native tools, eleven themes, any OpenAI-compatible model, and an undo trail for every
+            change it makes.
+          </p>
+          <div class="cta-row center">
+            <a
+              class="btn btn-primary btn-xl"
+              href="https://github.com/bananatoaster47e/FlippyAI/releases"
+              target="_blank"
+              rel="noopener"
+            >
+              <span class="btn-icon" aria-hidden="true">&#11015;</span>
+              <span class="btn-label">Download FlippyAI</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="wrap footer-inner">
+        <div class="f-col">
+          <a class="brand" href="#top">
+            <img src="assets/flippyai-mark.png" alt="" width="30" height="31" class="brand-mark" />
+            <span class="brand-name">FlippyAI</span>
+          </a>
+          <p class="f-tag">A self-contained AI agent GUI with a real interface.</p>
+        </div>
+        <div class="f-col">
+          <h4>Explore</h4>
+          <a href="#features">Overview</a>
+          <a href="#tools">Tools</a>
+          <a href="#control">Controls</a>
+          <a href="#themes">Themes</a>
+          <a href="#specs">Specs</a>
+        </div>
+        <div class="f-col">
+          <h4>Project</h4>
+          <a
+            href="https://github.com/bananatoaster47e/FlippyAI/releases"
+            target="_blank"
+            rel="noopener"
+            >GitHub</a
+          >
+          <a href="#get">Install notes</a>
+          <a href="mailto:bananatoaster47e@gmail.com">Report an issue</a>
+        </div>
+        <div class="f-col f-legal">
+          <h4>License</h4>
+          <p>
+            Copyright 2026 FlippyAI. Licensed under the Apache License, Version 2.0.
+            Open source &mdash; free to use, modify and share.
+          </p>
+          <p class="dim">
+            Questions or problems? Contact
+            <a href="mailto:bananatoaster47e@gmail.com">bananatoaster47e@gmail.com</a>
+          </p>
+        </div>
+      </div>
+      <div class="wrap footer-bottom">
+        <span>FlippyAI</span>
+        <span class="dotsep" aria-hidden="true">&middot;</span>
+        <span>macOS &amp; Windows</span>
+        <span class="dotsep" aria-hidden="true">&middot;</span>
+        <span>Apache-2.0</span>
+        <span class="dotsep" aria-hidden="true">&middot;</span>
+        <span>OpenAI-compatible</span>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
+
